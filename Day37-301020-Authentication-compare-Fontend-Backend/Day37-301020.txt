@@ -1,0 +1,61 @@
+Day37 30-10-2020 
+เชื่อม font-end กับ back-end
+สร้าง Folder งาน cd เข้าไปใน Folder 
+สร้าง Folder ชื่อ backend และทำการสร้าง React-app (ส่วน fontend)
+create-react-app fontend 
+  //หรือจะใช้คำสั่ง npm init react-app workName
+npm init -y 
+npm i express sequelize mysql2 bcryptjs jsonwebtoken cors passport passport-jwt
+sequelize-cli init:config 
+  //สร้าง Folder > config และ config.json ใน Folder > config
+    จากนั้นแก้ไขไฟล์ 'config/config.json' ในส่วนของ development ให้ตรงกับที่เราติดตั้ง MySQL ไว้ในเครื่อง
+    (username, password )
+    แก้ไข database ให้ใส่เป็นชื่อไฟล์ที่เราต้องการ
+sequelize-cli init:models 
+  //สร้าง Folder > models และ index.js ใน Folder > models
+sequelize-cli db:create 
+
+สร้าง index.js ใน Folder > backend
+  import เครื่องมือที่ต้องใช้ไว้ด้านบน
+  สร้าง port โดย
+    app.listen("8000", () => {
+      console.log("Server is running");
+    });
+
+Folder > models
+  สร้างไฟล์ .js เพื่อสร้าง table ใน database
+  ในไฟล์งาน Todo list นี้ จะสร้างเป็น User.js กับ Todo.js
+
+จากนั้นเข้าไปที่ไฟล์ทั้ง 2 เพื่อใส่รายละเอียดของ table เช่น ชื่อตาราง ชื่อข้อมูลที่ต้องการเก็บ(คอลัม) เป็นต้น และรายละเดียดเงื่อนไขข้อมูล
+  table name
+  column name
+
+เข้าหน้า index ของ backend เพิ่มคำสั่งเพื่อ sync ข้อมูลตารางที่สร้างเข้าไป
+  db.sequelize.sync()
+    .then(() => {
+      console.log("Data sync");
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+เขียนโปรแกรมคำสั่งในไฟล์ของ Folder > routes และ controllers
+
+สร้างไฟล์ passport.js ใน Folder > config
+
+สุดท้ายเพิ่มคำสั่งเรียกใช้ cors เข้าไปใน index.js ของ backend
+  //const cors = require('cors');
+  //app.user(cors());
+
+เมื่อจัดดาร back-end เสร็จเรียบร้อยแล้ว ทำ font-end ต่อโดย
+
+คลิกขวาที่ Fodler > fontend
+เลือก Open in Intregrated Terminal  //เหมือนกับ cd หน้า Terminal เข้าไปที่ fontend
+พิมพ์คำสั่งเพื่อติดตั้งเครื่องมือต่างๆที่ต้องใช้เข้า fontend
+  npm i axios jwt-decode antd
+      axios
+      jwt-decode
+      antd //ใช้ในการจัดการตกแต่งหน้า fontend จำพวกฟอร์มต่างๆ
+
+พิมพ์คำสั่งเพื่อติดตั้งเครื่องมือสำหรับ...
+  npm i react-router-dom

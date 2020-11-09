@@ -1,0 +1,18 @@
+Day38 - 021120
+ทำต่อจาก Day37 ติดตั้งโปรแกรมเพิ่มตัว Dotenv ใน Folder > backend โดยพิมพ์คำสั่งต่อไปนี้
+npm i dotenv
+แก้ไขไฟล์ backend/index.js เพิ่ม require("dotenv").config(); //เพิ่มเครื่องมือเข้า index.js
+สร้าง File ชื่อ .env ที่ Folder > backend 
+// สร้าง .env เพื่อง่ายต่อการเปลี่ยนแปลง port, secretOrKey
+  สร้าง PORT ใน .env แล้วไปที่ backend/index.js แก้ไข port ที่ app.listen เป็น process.env.PORT
+  สร้าง SECRET สำหรับใส่ secretOrKey แล้วไปแก้ไข secretOrKey ที่ File ที่มีการใส่ secretOrKey ไว้ ให้เป็น process.env.SECRET
+    ใน File งานนี้มีที่ต้องแก้ไขที่ backend/config/passport.js และ backend/controllers/user.js 
+  สร้าง SALT_ROUND ใน .env แล้วไปที่ backend/controllers/user.js ในส่วนของ register > salt แก้ไข rounds ของ genSaltSync เป็น Number(process.env.SALT_ROUND)
+
+Folder > fontend
+สร้าง roles.js ใน fontend/src/config เพื่อจำกัดการเข้าถึงของผู้เข้าเว็บ
+สร้าง PrivateRoutes.js ใน fontend/src/containers เพื่อสร้างคำสั่งเชื่อมการทำงานของ roles.js ใน config
+
+ครึ่งบ่ายทำ Facebook ทำเป็นกลุ่ม
+ทำ User เสร็จแล้ว clone จาก 
+https://github.com/AuJeedJad/facebook.git

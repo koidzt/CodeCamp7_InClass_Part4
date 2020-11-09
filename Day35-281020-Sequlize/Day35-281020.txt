@@ -1,0 +1,14 @@
+Day35 
+เรียน Slide - Sequelize.js
+ใช้ไฟล์ของ Day 33 มาเรียนต่อจากเดิม ทำหารเชื่อมตารางด้วย sequelize
+สร้าง Person.js ใน models 
+  สร้างตาราง Person แล้ว เชื่อมตารางระหว่าง Todo.js กับ Person.js
+สร้าง person.js ใน routes
+สร้างโฟลเดอร์ controllers เพื่อเก็บฟังก์ชันให้ตัว routes ดู clean
+ทำให้ routes ถึงฟังก์ชันจาก controllers เพื่อเรียกใช้งานาฟังก์ชัน
+แก้ไข index ให้เปลี่ยนชื่อจาก todoController เป็น todoRoutes เพราะของเดิมชื่อไม่ตรงทำให้สับสน
+เพิ่ม personRoutes = require('./routes/person') และ app.use('/persons', personRoutes); เพราะตอนนี้มีการเพิ่มข้อมูลตาราง Person เข้าไป
+
+
+
+เรียน Slide - Authentication

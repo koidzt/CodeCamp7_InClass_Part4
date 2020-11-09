@@ -1,0 +1,67 @@
+Day36 29-10-2020 
+ทบทวน Slide - Basic Authentication ที่เรียนทฤษฎีเมื่อวาน(Day35-28-10-2020)
+ทำแบบฝึกหัด Authentication โดยใช้ไฟล์ของ Day 35 มาเรียนต่อจากเดิม
+
+ติดตั้ง bcryptjs passport-jwt passport jsonwebtoken โดยพิมพ์ในหน้า terminal ดังนี้
+npm i bcryptjs passport-jwt passport jsonwebtoken //พิมพ์ตัวที่จะติดตั้งไล่ต่อกันได้เลยไม่ต้องพิมพ์แยก npm install ใหม่ทุกอัน
+
+models/Person.js
+เพิ่มตารางข้อมูลในส่วนของ username และ password
+
+สร้าง user.js ใน Folder ของ routes และ controllers
+
+เพิ่มคำสั่งเพื่อเชี่อมไฟล์ user.js ของโฟล์เดอร์ routes และ controllers ในไฟล์ index.js
+const userRoutes = require('./routes/user')
+app.use('/auth', userRoutes);
+
+sequelize-cli db:drop //เพื่อลบ database เดิมทิ้ง
+จากเดิมที่วันก่อนๆใช้วิธีเขียนทับใหม่จากโดยเปลี่ยนค่า { force: false } เป็น { force: true } ในส่วนของคำสั่ง
+
+  db.sequelize.sync({ force: false }).then(() => {...}).catch(err => {...})
+
+ที่อยู่ในไฟล์ index.js
+//เวลาปรับเป็น true จะเป็นการสร้างใหม่ทับของเดิม ถ้าเป็น falหำ คือไม่สร้างไฟล์งานใหม่ทับ
+
+เมื่อ sequelize-cli db:drop เพื่อลบ database เดิมทิ้งแล้ว
+ให้พิมพ์ sequelize-cli db:create เพื่อสร้าง database ขึ้นมาใหม่ 
+เมื่อเราพิมพ์ sequelize-cli db:drop||create ชื่อไฟล์ที่ลบหรือสร้างจะอยู่ใน config/config.json
+ใน object ชื่อ "database" ของ development 
+
+
+
+
+
+ทดลองทำใหม่อีกครั้งให้ได้แบบ MySQL-Test แต่เป็นแบบไม่ใช้ passport
+สร้าง Folder ใหม่ โดยพิมพ์คำสั่งในหน้า terminal ดังนี้
+npm init -y //สร้าง package.json
+npm i express //ติดตั้ง express ใน Folder สร้าง node_modules และ package-lock.json
+npm i sequelize //ติดตั้ง sequelize ใน Folder
+npm i mysql2 //ติดตั้ง mysql2 ใน Folder
+npm i bcryptjs //ติดตั้ง bcryptjs ใน Folder
+npm i jsonwebtoken //ติดตั้ง jsonwebtoken ใน Folder
+npm i cors//ติดตั้ง cors ใน Folder เพื่อเชื่อม Font-end กับ back-end
+
+สามารถพิมพ์รวมทีเดียวเป็น
+npm i express sequelize mysql2 bcryptjs jsonwebtoken cors ได้
+
+สร้างโฟลเดอร์ config และ models ด้วยคำการพิมพ์คำสั่งใน terminal ดังนี้
+sequelize-cli init:config //สร้าง Folder > config และ config.json ใน Folder > config
+sequelize-cli init:models //สร้าง Folder > models และ index.js ใน Folder > models
+ใช้วิธีนี้ในการสร้าง Folder เพื่อให้มีการ link กันในการทำงาน (ไฟล์ config.json และ index.js ?ี่ระบบสร้างให้จะมีการคีย์คำสั่งมาให้อัตโนมัติ)
+
+จากนั้นแก้ไขข้อมูล Object ใน development ของไฟล์ 'config/config.json'
+แก้ไข username, password ให้ตรงกับที่ติดตั้งไว้ใน MySLQ 
+แก้ไข database ให้ใส่เป็นชื่อไฟล์ที่เราต้องการ
+development": {
+    "username": "root",
+    "password": "585652545",
+    "database": "new-todolist",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+}
+
+หลังจากแก้ไขเสร็จแล้วให้พิมพ์คำสั่งในหน้า terminal เพื่อสร้าง database ใน MySQL
+sequelize-cli db:create 
+
+
+**สร้าง middle ware เอง
